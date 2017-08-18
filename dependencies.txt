@@ -1,0 +1,16 @@
+pip install numpy
+
+pip install scipy
+
+pip install scikit-learn
+
+pip install matplotlib
+
+pip install pandas
+
+sudo pip install numpy scipy scikit-learn matplotlib pandas quandl
+
+
+
+
+
