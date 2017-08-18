@@ -47,28 +47,50 @@ class Sherlock():
 
 
     
-    def DefineNewDataFrame(self):
-        self.data_frame = self.data_frame
+    def DefineNewDataFrame(self, featureLabelOne, featureLabelTwo, featureLabelThree, featureLabelFour):
+        # label must be attached to data set
+        # for this example: Adj. Close, HL_PCT, PCT_change, Adj. Volume
+        self.data_frame = self.data_frame[[featureLabelOne, featureLabelTwo, featureLabelThree, featureLabelFour]]
+
+
+
+    def Log(self):
+        sherlock = Sherlock()
+        sherlock.GetSampleData("WIKI/GOOGL")
+        sherlock.PrintDataHead()
+        sherlock.StripData()
         
+        print('\n\nNow printing stripped data >>> >>>\n\n')
+        sherlock.PrintDataHead()
+        
+        print('\n\nNow calculating new column based on volatility delta >>> >>>\n\n')
+        sherlock.CalculateNewColumnBasedOnCrudeVolatility('HL_PCT')
+        sherlock.PrintDataHead()
+        
+        print('\n\nNow calculating new column based on daily delta >>> >>>\n\n')
+        sherlock.CalculateNewColumnBasedOnDailyPercentageChange('PCT_change')
+        sherlock.PrintDataHead()
+        
+        print('\n\nNow defining a new data frame with four features >>> >>>\n\n')
+        sherlock.DefineNewDataFrame('Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume')
+        sherlock.PrintDataHead()
 
 
 
-    
+
 sherlock = Sherlock()
-sherlock.GetSampleData("WIKI/GOOGL")
-sherlock.PrintDataHead()
-sherlock.StripData()
+sherlock.Log()
 
-print('\n\nNow printing stripped data >>> >>>\n\n')
-sherlock.PrintDataHead()
 
-print('\n\nNow calculating new column based on volatility delta >>> >>>\n\n')
-sherlock.CalculateNewColumnBasedOnCrudeVolatility('volatility delta')
-sherlock.PrintDataHead()
 
-print('\n\nNow calculating new column based on daily delta >>> >>>\n\n')
-sherlock.CalculateNewColumnBasedOnDailyPercentageChange('daily delta')
-sherlock.PrintDataHead()
+
+
+
+
+
+
+
+
 
 
 
